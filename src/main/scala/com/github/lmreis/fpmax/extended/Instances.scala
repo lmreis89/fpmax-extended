@@ -1,6 +1,6 @@
 package com.github.lmreis.fpmax.extended
 
-import cats.{Functor, Monad}
+import cats.Monad
 import cats.data.State
 import cats.effect.{IO => CIO}
 import com.github.lmreis.fpmax.extended.typeclasses.{Console, Random}
@@ -67,10 +67,6 @@ object Instances {
 
       override def pure[A](x: A): SyncIO[A] = ZIO.now(x)
     }
-
-//    implicit val FunctorIO: Functor[SyncIO] = new Functor[SyncIO] {
-//      override def map[A, B](fa: SyncIO[A])(f: A => B): SyncIO[B] = fa.map(f)
-//    }
 
     implicit val ConsoleIO: Console[SyncIO] = new Console[SyncIO] {
       def putStrLn(line: ConsoleOut) : SyncIO[Unit] = {

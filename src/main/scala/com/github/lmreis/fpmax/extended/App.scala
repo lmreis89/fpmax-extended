@@ -37,7 +37,7 @@ object ConsoleOut {
 
 object App {
 
-  def finish[F[_], A](a: => A)(implicit F: Monad[F]): F[A] = F.point(a)
+  def finish[F[_], A](a: A)(implicit F: Monad[F]): F[A] = F.point(a)
   def getStrLn[F[_]: Console]: F[String] = Console[F].getStrLn
   def putStrLn[F[_]: Console](line: ConsoleOut): F[Unit] = Console[F].putStrLn(line)
   def nextInt[F[_]](ceiling: Int)(implicit F: Random[F]): F[Int] = Random[F].nextInt(ceiling)
